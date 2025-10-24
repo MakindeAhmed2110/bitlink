@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { config } from './config/web3'
 import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
+import Transactions from './pages/Transactions'
+import ManagePosition from './pages/ManagePosition'
 
 import '@rainbow-me/rainbowkit/styles.css'
 
@@ -26,6 +28,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard/transactions" element={<Transactions />} />
+              <Route path="/dashboard/position" element={<ManagePosition />} />
             </Routes>
           </BrowserRouter>
         </RainbowKitProvider>

@@ -1,6 +1,7 @@
 import { useAccount } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useNavigate } from 'react-router-dom'
+import MobileMenu from '../components/MobileMenu'
 import './Landing.css'
 
 export default function Landing() {
@@ -23,6 +24,7 @@ export default function Landing() {
             <a href="#merchants">Merchants</a>
           </div>
           <div className="nav-actions">
+            <MobileMenu />
             <ConnectButton />
           </div>
         </div>

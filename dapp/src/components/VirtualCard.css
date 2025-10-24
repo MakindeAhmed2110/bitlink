@@ -1,0 +1,12 @@
+.virtual-card-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.virtual-card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
