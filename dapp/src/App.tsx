@@ -7,6 +7,7 @@ import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
 import Transactions from './pages/Transactions'
 import ManagePosition from './pages/ManagePosition'
+import ProductCheckout from './pages/ProductCheckout'
 
 import '@rainbow-me/rainbowkit/styles.css'
 
@@ -30,6 +31,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard/transactions" element={<Transactions />} />
               <Route path="/dashboard/position" element={<ManagePosition />} />
+              <Route path="/product-checkout" element={<ProductCheckout />} />
             </Routes>
           </BrowserRouter>
         </RainbowKitProvider>

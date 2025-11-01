@@ -77,5 +77,51 @@ export const CONTRACTS = {
   PCV: '0x4dDD70f4C603b6089c07875Be02fEdFD626b80Af',
   GovernableVariables: '0x6552059B6eFc6aA4AE3ea45f28ED4D92acE020cD',
   BorrowerOperationsSignatures: '0xD757e3646AF370b15f32EB557F0F8380Df7D639e',
+  // Mezo Pools (Swap)
+  Router: '0x9a1ff7FE3a0F69959A3fBa1F1e5ee18e1A9CD7E9',
+  PoolFactory: '0x4947243CC818b627A5D06d14C4eCe7398A23Ce1A',
+  MUSDBTCPool: '0x52e604c44417233b6CcEDDDc0d640A405Caacefb',
+  MUSDmUSDCPool: '0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356',
+  MUSDmUSDTPool: '0x10906a9E9215939561597b4C8e4b98F93c02031A',
+  // Bridged assets
+  tBTC: '0x517f2982701695D4E52f1ECFBEf3ba31Df470161',
+  BridgeTBTC: '0x9b1a7fE5a16A15F2f9475C5B231750598b113403',
+  WBTC: '0xdc5558c2873C6375d5a90551c9D0F853794D357D',
+  mUSDC: '0x0000000000000000000000000000000000000000', // TODO: Add mUSDC address
+  mUSDT: '0x0000000000000000000000000000000000000000', // TODO: Add mUSDT address
+} as const
+
+// Swap token config
+export const SWAP_TOKENS = {
+  MUSD: {
+    address: CONTRACTS.MUSD,
+    symbol: 'MUSD',
+    name: 'Mezo Dollar',
+    decimals: 18,
+  },
+  tBTC: {
+    address: CONTRACTS.tBTC,
+    symbol: 'tBTC',
+    name: 'Threshold Bitcoin',
+    decimals: 18,
+  },
+  WBTC: {
+    address: CONTRACTS.WBTC,
+    symbol: 'WBTC',
+    name: 'Wrapped Bitcoin',
+    decimals: 18,
+  },
+  mUSDC: {
+    address: CONTRACTS.mUSDC,
+    symbol: 'mUSDC',
+    name: 'Mezo USDC',
+    decimals: 18,
+  },
+  mUSDT: {
+    address: CONTRACTS.mUSDT,
+    symbol: 'mUSDT',
+    name: 'Mezo USDT',
+    decimals: 18,
+  },
 } as const
 

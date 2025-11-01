@@ -3,8 +3,11 @@ import { useAccount } from 'wagmi'
 import { useNavigate, Link } from 'react-router-dom'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import GetMUSDModal from '../components/GetMUSDModal'
+import SendModal from '../components/SendModal'
+import SwapModal from '../components/SwapModal'
 import VirtualCard from '../components/VirtualCard'
 import MobileMenu from '../components/MobileMenu'
+import Analytics from '../components/Analytics'
 import { useMUSDBalance } from '../hooks/useMUSDBalance'
 import './Dashboard.css'
 
@@ -12,6 +15,9 @@ export default function Dashboard() {
   const { isConnected, address } = useAccount()
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isSendModalOpen, setIsSendModalOpen] = useState(false)
+  const [isSwapModalOpen, setIsSwapModalOpen] = useState(false)
+  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false)
 
   // Get real balances from blockchain
   const { musdBalance, btcBalance, isLoading, refetch } = useMUSDBalance(address)
@@ -19,6 +25,16 @@ export default function Dashboard() {
   // Refetch balances when modal closes (in case of successful transaction)
   const handleModalClose = () => {
     setIsModalOpen(false)
+    refetch() // Refresh balances
+  }
+
+  const handleSendModalClose = () => {
+    setIsSendModalOpen(false)
+    refetch() // Refresh balances
+  }
+
+  const handleSwapModalClose = () => {
+    setIsSwapModalOpen(false)
     refetch() // Refresh balances
   }
 
@@ -121,17 +137,11 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Virtual Card Section */}
-          <div className="card-section">
-            <h2 className="section-heading">Your Virtual Card</h2>
-            <VirtualCard />
-          </div>
-
           {/* Quick Actions */}
           <div className="quick-actions">
             <h2 className="section-heading">Quick Actions</h2>
             <div className="actions-grid">
-              <button className="action-card">
+              <button className="action-card" onClick={() => setIsSendModalOpen(true)}>
                 <div className="action-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path
@@ -146,7 +156,7 @@ export default function Dashboard() {
                 <p>Transfer to anyone instantly</p>
               </button>
 
-              <button className="action-card">
+              <button className="action-card" onClick={() => setIsSwapModalOpen(true)}>
                 <div className="action-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path
@@ -161,7 +171,7 @@ export default function Dashboard() {
                 <p>Exchange tokens easily</p>
               </button>
 
-              <button className="action-card">
+              <button className="action-card" onClick={() => setIsAnalyticsOpen(true)}>
                 <div className="action-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path
@@ -190,7 +200,28 @@ export default function Dashboard() {
                 <h3>Earn</h3>
                 <p>Deposit in Stability Pool</p>
               </button>
+              
+              <button className="action-card" onClick={() => navigate('/product-checkout')}>
+                <div className="action-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
+                  </svg>
+                </div>
+                <h3>Try Checkout</h3>
+                <p>Pay with your virtual card</p>
+              </button>
             </div>
+          </div>
+
+          {/* Virtual Card Section */}
+          <div className="card-section">
+            <h2 className="section-heading">Your Virtual Card</h2>
+            <VirtualCard />
           </div>
         </div>
       </main>
@@ -200,6 +231,24 @@ export default function Dashboard() {
         isOpen={isModalOpen}
         onClose={handleModalClose}
         availableBTC={btcBalance}
+      />
+
+      {/* Send Modal */}
+      <SendModal
+        isOpen={isSendModalOpen}
+        onClose={handleSendModalClose}
+      />
+
+      {/* Swap Modal */}
+      <SwapModal
+        isOpen={isSwapModalOpen}
+        onClose={handleSwapModalClose}
+      />
+
+      {/* Analytics Modal */}
+      <Analytics
+        isOpen={isAnalyticsOpen}
+        onClose={() => setIsAnalyticsOpen(false)}
       />
     </div>
   )
